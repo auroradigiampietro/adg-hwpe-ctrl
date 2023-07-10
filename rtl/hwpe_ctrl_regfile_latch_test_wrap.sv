@@ -15,9 +15,9 @@
 
 module hwpe_ctrl_regfile_latch_test_wrap
 #(
-   parameter ADDR_WIDTH = 5,
-   parameter DATA_WIDTH = 32,
-   parameter NUM_BYTE   = DATA_WIDTH/8
+   parameter  int unsigned ADDR_WIDTH = 5,
+   parameter  int unsigned DATA_WIDTH = 32,
+   localparam int unsigned NUM_BYTE   = DATA_WIDTH/8
 )
 (
    input  logic                                     clk,
@@ -85,8 +85,7 @@ module hwpe_ctrl_regfile_latch_test_wrap
    
    hwpe_ctrl_regfile_latch #(
       .ADDR_WIDTH ( ADDR_WIDTH ),
-      .DATA_WIDTH ( DATA_WIDTH ),
-      .NUM_BYTE   ( NUM_BYTE   )
+      .DATA_WIDTH ( DATA_WIDTH )
    ) hwpe_ctrl_regfile_latch_i (
       .clk         ( clk               ),
       .rst_n       ( rst_n             ),

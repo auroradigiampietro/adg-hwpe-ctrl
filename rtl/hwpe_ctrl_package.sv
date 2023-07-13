@@ -80,7 +80,7 @@ package hwpe_ctrl_package;
      // Extension
     logic         ext_we;
     logic         ext_re;       // Register on bus is extension port
-    logic [31:0]  ext_flags;    // Data provided to read
+    logic [63:0]  ext_flags;    // Data provided to read
   } flags_regfile_t;
 
   typedef struct packed {

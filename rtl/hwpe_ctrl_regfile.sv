@@ -71,7 +71,7 @@ module hwpe_ctrl_regfile
   logic                             regfile_latch_we;
   logic [DataWidth-1:0]             regfile_latch_wdata;
   logic [DataWidth/8-1:0]           regfile_latch_be;
-  logic [N_SCM_REGISTERS-1:0][31:0] regfile_latch_mem;
+  logic [N_SCM_REGISTERS-1:0][DataWidth-1:0] regfile_latch_mem;
 
   logic [1:0] r_finished_cnt;
   logic r_was_testset;

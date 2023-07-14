@@ -22,8 +22,8 @@ interface hwpe_ctrl_intf_periph (
   input logic clk
 );
 
-  parameter  int unsigned AddrWidth = -1;
-  parameter  int unsigned DataWidth = -1;
+  parameter  int unsigned AddrWidth = 32;
+  parameter  int unsigned DataWidth = 32;
   parameter  int unsigned ID_WIDTH  = -1;
   localparam int unsigned BeWidth   = DataWidth/8;
 

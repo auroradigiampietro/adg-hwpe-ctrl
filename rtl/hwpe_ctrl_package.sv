@@ -61,7 +61,7 @@ package hwpe_ctrl_package;
   } regfile_in_t;
 
   typedef struct packed {
-    logic [31:0] rdata;
+    logic [63:0] rdata;
   } regfile_out_t;
 
   typedef struct packed {

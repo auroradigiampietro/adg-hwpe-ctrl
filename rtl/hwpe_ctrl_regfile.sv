@@ -404,7 +404,9 @@ module hwpe_ctrl_regfile
       end
     end
     else if (regfile_latch_be == 8'hF0) begin
-      reg_file.hwpe_params = regfile_mem[flags_i.running_context][N_MANDATORY_REGS+N_RESERVED_REGS+N_MAX_GENERIC_REGS+N_IO_REGS-1:N_MANDATORY_REGS+N_RESERVED_REGS+N_MAX_GENERIC_REGS][63:32];
+      for (int i=0; i<N_IO_REGS; ++i) begin
+        reg_file.hwpe_params[i] = regfile_mem[flags_i.running_context][N_MANDATORY_REGS+N_RESERVED_REGS+N_MAX_GENERIC_REGS+i][63:32];
+      end
     end
     else begin
       reg_file.hwpe_params = regfile_mem[flags_i.running_context][N_MANDATORY_REGS+N_RESERVED_REGS+N_MAX_GENERIC_REGS+N_IO_REGS-1:N_MANDATORY_REGS+N_RESERVED_REGS+N_MAX_GENERIC_REGS];

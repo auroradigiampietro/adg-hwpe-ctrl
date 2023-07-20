@@ -399,7 +399,7 @@ module hwpe_ctrl_regfile
   always_comb
   begin: choose_32bit
   for (int i=0; i<N_IO_REGS; ++i) begin
-    if (regfile_mem[flags_i.running_context][N_MANDATORY_REGS+N_RESERVED_REGS+N_MAX_GENERIC_REGS+i][31:0] != '0) begin
+    if (regfile_mem[flags_i.running_context][N_MANDATORY_REGS+N_RESERVED_REGS+N_MAX_GENERIC_REGS+i][31:0] != 32'h00000000) begin
       reg_file.hwpe_params[i] = regfile_mem[flags_i.running_context][N_MANDATORY_REGS+N_RESERVED_REGS+N_MAX_GENERIC_REGS+i][31:0];
     end
     else begin

@@ -398,12 +398,12 @@ module hwpe_ctrl_regfile
 
   always_comb
   begin: choose_32bit
-    if (regfile_latch_be == 8'h0F) begin
+    if (regfile_mem[flags_i.running_context][N_MANDATORY_REGS+N_RESERVED_REGS+N_MAX_GENERIC_REGS+i][31:0] != '0) begin
       for (int i=0; i<N_IO_REGS; ++i) begin
         reg_file.hwpe_params[i] = regfile_mem[flags_i.running_context][N_MANDATORY_REGS+N_RESERVED_REGS+N_MAX_GENERIC_REGS+i][31:0];
       end
     end
-    else if (regfile_latch_be == 8'hF0) begin
+    else begin
       for (int i=0; i<N_IO_REGS; ++i) begin
         reg_file.hwpe_params[i] = regfile_mem[flags_i.running_context][N_MANDATORY_REGS+N_RESERVED_REGS+N_MAX_GENERIC_REGS+i][63:32];
       end

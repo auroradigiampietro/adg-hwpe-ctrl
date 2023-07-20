@@ -398,19 +398,13 @@ module hwpe_ctrl_regfile
 
   always_comb
   begin: choose_32bit
+  for (int i=0; i<N_IO_REGS; ++i) begin
     if (regfile_mem[flags_i.running_context][N_MANDATORY_REGS+N_RESERVED_REGS+N_MAX_GENERIC_REGS+i][31:0] != '0) begin
-      for (int i=0; i<N_IO_REGS; ++i) begin
-        reg_file.hwpe_params[i] = regfile_mem[flags_i.running_context][N_MANDATORY_REGS+N_RESERVED_REGS+N_MAX_GENERIC_REGS+i][31:0];
-      end
+      reg_file.hwpe_params[i] = regfile_mem[flags_i.running_context][N_MANDATORY_REGS+N_RESERVED_REGS+N_MAX_GENERIC_REGS+i][31:0];
     end
     else begin
-      for (int i=0; i<N_IO_REGS; ++i) begin
-        reg_file.hwpe_params[i] = regfile_mem[flags_i.running_context][N_MANDATORY_REGS+N_RESERVED_REGS+N_MAX_GENERIC_REGS+i][63:32];
-      end
+      reg_file.hwpe_params[i] = regfile_mem[flags_i.running_context][N_MANDATORY_REGS+N_RESERVED_REGS+N_MAX_GENERIC_REGS+i][63:32];
     end
-//    else begin
-//      reg_file.hwpe_params = regfile_mem[flags_i.running_context][N_MANDATORY_REGS+N_RESERVED_REGS+N_MAX_GENERIC_REGS+N_IO_REGS-1:N_MANDATORY_REGS+N_RESERVED_REGS+N_MAX_GENERIC_REGS];
-//    end
   end
 
   generate

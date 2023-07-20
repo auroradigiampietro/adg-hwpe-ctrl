@@ -406,6 +406,7 @@ module hwpe_ctrl_regfile
       reg_file.hwpe_params[i] = regfile_mem[flags_i.running_context][N_MANDATORY_REGS+N_RESERVED_REGS+N_MAX_GENERIC_REGS+i][63:32];
     end
   end
+  end
 
   generate
     if(N_GENERIC_REGS>0)

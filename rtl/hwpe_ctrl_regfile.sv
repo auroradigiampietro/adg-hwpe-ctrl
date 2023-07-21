@@ -311,7 +311,7 @@ module hwpe_ctrl_regfile
   // Assign Extension to external flag for access. Registered on demand
  generate
     if (~EXT_IN_REGGED) begin : gen_assign_ext
-      if (regfile_in_i.wdata[31:0] != 32'h00000000) begin
+      if (regfile_in_i.be == 8'h0F) begin
         assign reg_file.ext_data = regfile_mem_mandatory[REGFILE_MANDATORY_RESERVED][31:0];
       end
       else begin
@@ -322,7 +322,7 @@ module hwpe_ctrl_regfile
         if(~rst_ni) begin
           reg_file.ext_data <= 0;
         end else if (flags_i.ext_we) begin
-          if (regfile_in_i.wdata[31:0] != 32'h00000000) begin
+          if (regfile_in_i.be == 8'h0F) begin
             assign reg_file.ext_data = regfile_mem_mandatory[REGFILE_MANDATORY_RESERVED][31:0];
           end
           else begin

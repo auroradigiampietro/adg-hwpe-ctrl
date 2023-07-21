@@ -309,7 +309,7 @@ module hwpe_ctrl_regfile
   assign regfile_mem_mandatory[REGFILE_MANDATORY_RESERVED] = regfile_in_i.wdata;
 
   // Assign Extension to external flag for access. Registered on demand
- generate
+  generate
     if (~EXT_IN_REGGED) begin : gen_assign_ext
         assign reg_file.ext_data = regfile_mem_mandatory[REGFILE_MANDATORY_RESERVED];
     end else begin : gen_assign_ext
@@ -396,17 +396,7 @@ module hwpe_ctrl_regfile
 
   endgenerate
 
-  always_comb
-  begin: choose_32bit
-  for (int i=0; i<N_IO_REGS; ++i) begin
-    if (regfile_mem[flags_i.running_context][N_MANDATORY_REGS+N_RESERVED_REGS+N_MAX_GENERIC_REGS+i][31:0] != 32'h00000000) begin
-      reg_file.hwpe_params[i] = regfile_mem[flags_i.running_context][N_MANDATORY_REGS+N_RESERVED_REGS+N_MAX_GENERIC_REGS+i][31:0];
-    end
-    else begin
-      reg_file.hwpe_params[i] = regfile_mem[flags_i.running_context][N_MANDATORY_REGS+N_RESERVED_REGS+N_MAX_GENERIC_REGS+i][63:32];
-    end
-  end
-  end
+  assign reg_file.hwpe_params = regfile_mem[flags_i.running_context][N_MANDATORY_REGS+N_RESERVED_REGS+N_MAX_GENERIC_REGS+N_IO_REGS-1:N_MANDATORY_REGS+N_RESERVED_REGS+N_MAX_GENERIC_REGS];
 
   generate
     if(N_GENERIC_REGS>0)

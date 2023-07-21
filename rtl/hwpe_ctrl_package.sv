@@ -55,13 +55,13 @@ package hwpe_ctrl_package;
     logic [31:0] addr;
     logic        rden;
     logic        wren;
-    logic [63:0] wdata;
+    logic [31:0] wdata;
     logic [31:0] src;
-    logic [7:0]  be;
+    logic [3:0]  be;
   } regfile_in_t;
 
   typedef struct packed {
-    logic [63:0] rdata;
+    logic [31:0] rdata;
   } regfile_out_t;
 
   typedef struct packed {
